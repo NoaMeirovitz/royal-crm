@@ -1,22 +1,22 @@
-const orders = [];
+module.exports = {
+  orders: [],
 
-function addOrder() {
-  const order = process.argv.slice(2);
+  addOrder: function () {
+    const name = process.argv.slice(2);
 
-  if (!order || order.length === 0) {
-    throw "Error: order is empty!";
-  }
+    if (!name || name.length === 0) {
+      throw "ERROR: name is empty";
+    }
 
-  const orderId = Math.floor(Math.random() * 100000);
+    this.orders.push({
+      name: name,
+      id: this.orders.length,
+    });
+  },
 
-  orders.push({
-    order: order,
-    id: orderId,
-  });
-
-  orders.forEach((order) => {
-    console.log(`ok. order: ${order.order} with temporary id: ${order.id}.`);
-  });
-}
-
-addOrder();
+  ordersList: function () {
+    this.orders.forEach((order) => {
+      console.log(`ok. name: ${orders.name} was created.`);
+    });
+  },
+};

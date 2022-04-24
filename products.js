@@ -1,24 +1,22 @@
-const products = [];
+module.exports = {
+  products: [],
 
-function addProduct() {
-  const product = process.argv.slice(2);
+  addProduct: function () {
+    const name = process.argv.slice(2);
 
-  if (!product || product.length === 0) {
-    throw "Error: order is empty!";
-  }
+    if (!name || name.length === 0) {
+      throw "ERROR: name is empty";
+    }
 
-  const productId = Math.floor(Math.random() * 100000);
+    orders.push({
+      name: name,
+      id: this.products.length,
+    });
+  },
 
-  products.push({
-    product: product,
-    productId: productId,
-  });
-
-  products.forEach((product) => {
-    console.log(
-      `ok. product: ${product.product} with temporary id: ${product.productId}.`
-    );
-  });
-}
-
-addProduct();
+  productsList: function () {
+    this.products.forEach((product) => {
+      console.log(`ok. name: ${product.name} was created.`);
+    });
+  },
+};
