@@ -29,3 +29,5 @@ Mini CRM project for managing customers, products, and orders
 
 - Windows: set DEBUG=royal-crm:\*; & npm start
 - MacOS/Linux: $ DEBUG=royal-crm:\* npm start
+
+## requirments for customers page:
