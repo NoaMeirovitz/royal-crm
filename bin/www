@@ -22,8 +22,8 @@ app.set("port", port);
 
 var server = http.createServer(app);
 
-//create the socket io server on
-//the top of the http server
+// create the socket io server on
+// the top of the http server
 const io = socketio(server);
 
 io.on("connection", (socket) => {
@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    console.log("user disconncted");
   });
 });
 
