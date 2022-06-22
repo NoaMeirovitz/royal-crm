@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
-  label = 'Click Me Now';
+  @Input() label = ''; // =this is my button label
+
   constructor() {}
 
   ngOnInit(): void {}
 
   buttonClick() {
-    console.log('this button was clicked.');
+    console.log('this button was clicked');
   }
 }

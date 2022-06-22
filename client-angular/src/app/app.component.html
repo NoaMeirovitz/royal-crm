@@ -1,8 +1,22 @@
 <app-header></app-header>
-<h1 class="text-danger">{{title}}</h1>
-<div><app-button></app-button></div>
-<div class="my-3"><app-button></app-button></div>
-<div><app-button></app-button></div>
 
+<h1 [ngClass]="getTitleClass()">{{ title }}</h1>
+
+<div>
+    <div *ngFor="let label of labels">
+        <app-button [label]="label"></app-button>
+    </div>
+</div>
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>
