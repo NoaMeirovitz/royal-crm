@@ -7,3 +7,7 @@ export interface Customer {
   countryName: string;
   countryCode: string;
 }
+
+export interface FilePath {
+  name: string;
+}

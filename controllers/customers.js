@@ -78,11 +78,10 @@ module.exports = {
 
     try {
       const result = await database.query(sql);
-      res.set("Access-Control-Allow-Origin", "*");
       res.json(result[0]);
     } catch (err) {
       console.log(err);
-      res.send(err);
+      res.json(err);
     }
   },
 
@@ -95,23 +94,7 @@ module.exports = {
     fileMgmt.exportToFile(res, sql, "customers");
   },
 
-  // todo: search in customers by parameter (name,email,country)
-  // sql: SELECT WHERE
   findCustomer: async function (req, res, next) {
-    /*
-        1. [V] client send request using html form
-        2. the request is being send to a router 
-            -[V] router maps the request to a function (controller),
-            -[V] router uses READ -> GET API
-        3. controller function:
-            -[V] req.query -> parameters in the request from client
-            -[V] use joi to validate req.query param (string, required, min 2 characters)
-            -[V] error or success => manage error
-            -[V] if success => add parameters into query
-            -[V] send query to database and get results
-            -[V] return response to client, display to user
-        */
-
     const param = req.query;
 
     const schema = joi.object({

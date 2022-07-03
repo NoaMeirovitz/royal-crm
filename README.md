@@ -14,7 +14,7 @@ Mini CRM project for managing customers, products, and orders
 
 ## run the app:
 
-> SET DEBUG=royal-crm:\* & npm start
+SET DEBUG='royal-crm:\*'; npm start
 
 ## SET DEBUG='royal-crm:\*'; npm start
 
