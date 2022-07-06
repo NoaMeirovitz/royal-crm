@@ -14,6 +14,15 @@ export class ApiService {
     return this.http.get<Array<Customer>>(`${environment.serverUrl}/customers`);
   }
 
+  getSortedCustomers(
+    column: string,
+    direction: string
+  ): Observable<Array<Customer>> {
+    return this.http.get<Array<Customer>>(
+      `${environment.serverUrl}/customers?column=${column}&sort=${direction}`
+    );
+  }
+
   exportCustomers(): Observable<FilePath> {
     return this.http.get<FilePath>(`${environment.serverUrl}/customers/export`);
   }
