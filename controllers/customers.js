@@ -16,7 +16,7 @@ module.exports = {
         .string()
         .required()
         .regex(/^[^@]+@[^@]+$/),
-      countryInputHtml: joi.number().required(),
+      countryId: joi.number().required(),
     });
 
     const { error, value } = schema.validate(reqBody);
@@ -31,23 +31,18 @@ module.exports = {
       " VALUES(?,?,?,?);";
 
     try {
-      const result = await database.query(sql, [
-        reqBody.name,
-        reqBody.phone,
-        reqBody.email,
-        reqBody.countryInputHtml,
-      ]);
+      const result = await database.query(sql, value);
+
+      value.id = result[0].insertId;
+      res.json(value);
     } catch (err) {
       console.log(err);
       return;
     }
-
-    res.send(`${reqBody.name} added successfully`);
   },
 
   customersList: async function (req, res, next) {
-    const param = req.query; // get method
-    //  const param = req.body;  // post method
+    const param = req.query;
 
     const schema = joi.object({
       column: joi
@@ -123,7 +118,7 @@ module.exports = {
         searchQuery,
       ]);
 
-      res.send(result[0]);
+      res.json(result[0]);
     } catch (err) {
       res.status(400).send(`search error: ${err}`);
       throw error;
