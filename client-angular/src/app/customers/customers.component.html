@@ -54,7 +54,7 @@
       <div class="mb-3">
         <label for="" class="form-label">Country</label>
         <select formControlName="country_id" class="form-select">
-          <option *ngFor="let country of countries" [value]="country.id">
+          <option *ngFor="let country of countries" [ngValue]="country.id">
             {{ country.name }}
           </option>
         </select>
@@ -106,3 +106,11 @@
     </tbody>
   </table>
 </div>
+
+<app-notification
+  (buttonClicked)="notificationClosed($event)"
+  [headerLabel]="'Notice'"
+  [showNotification]="showNotification"
+>
+  <span class="text-white">Success</span>
+</app-notification>

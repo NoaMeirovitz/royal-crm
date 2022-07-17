@@ -22,6 +22,7 @@ export class CustomersComponent implements OnInit {
   searchTerm!: string;
   tableSort!: CustomerSort;
   showForm = false;
+  showNotification = false;
 
   customerForm = new FormGroup({
     name: new FormControl('', {
@@ -33,7 +34,7 @@ export class CustomersComponent implements OnInit {
     phone: new FormControl('', {
       validators: Validators.required,
     }),
-    country_id: new FormControl('', {
+    country_id: new FormControl(0, {
       validators: Validators.required,
     }),
   });
@@ -43,11 +44,19 @@ export class CustomersComponent implements OnInit {
       return;
     }
 
-    const customer = this.customerForm.value;
+    this.apiService.addCustomer(this.customerForm.value).subscribe({
+      next: (data: Customer) => {
+        this.getCustomers();
+        this.showNotification = true;
+      },
+      error: (err) => console.error(err),
+    });
+  }
 
-    // this.apiService.addCustomer(this.customerForm.value).subscribe({
-
-    // })
+  notificationClosed(state: boolean) {
+    this.showForm = false;
+    this.customerForm.reset();
+    this.showNotification = state;
   }
 
   toggleForm() {
